@@ -13,7 +13,7 @@ const {
 
 const server = express();
 
-const port = process.env.PORT || 3003;
+const port = process.env.PORT || 3004;
 
 server.use(express.json());
 
@@ -31,7 +31,7 @@ const whiteList =
           }
         },
       };
-      server.use(cors());
+      server.use(cors(corsOptions));
 
 server.use("/movies",moviesRouter);
 server.use("/reviews", reviewsRouter);
@@ -43,10 +43,9 @@ server.use(genericErrorHandler);
 console.log(listEndpoints(server));
 
 server.listen(port, () => {
-    if (process.env.NODE_ENV === "production") {
-      console.log("Running on cloud on port", port)
-    } else {
-      console.log("Running locally on port", port)
-    }
-  });
-
+  if (process.env.NODE_ENV === "production") {
+    console.log("Running on cloud on port", port)
+  } else {
+    console.log("Running locally on port", port)
+  }
+});
