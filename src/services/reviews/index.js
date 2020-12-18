@@ -2,7 +2,7 @@
 const express = require("express")
 const uniqID = require("uniqid")
 const { getReviews, writeReviews } = require("../../fsUtilities")
-const { check, valIDationResult } = require("express-validator")
+const { check, validationResult } = require("express-validator")
 
 const reviewsRouter = express.Router()
 
@@ -68,7 +68,7 @@ reviewsRouter.post(
   ],
   async (req, res, next) => {
     try {
-      const errors = valIDationResult(req)
+      const errors = validationResult(req)
 
       if (!errors.isEmpty()) {
         const err = new Error()
