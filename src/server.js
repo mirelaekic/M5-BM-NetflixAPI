@@ -31,7 +31,7 @@ const whiteList =
           }
         },
       };
-      server.use(cors(corsOptions));
+      server.use(cors());
 
 server.use("/movies",moviesRouter);
 server.use("/reviews", reviewsRouter);
